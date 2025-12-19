@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<div class="container">
+  <h1>🎭 Узнай свою роль</h1>
+
+  {% for player in players %}
+    <details>
+      <summary>{{ player.name }}</summary>
+      <p>
+        {% if player.role == "mafia" %} 🔫 Мафия
+        {% elif player.role == "sheriff" %} ⭐ Шериф
+        {% elif player.role == "don" %} 👑 Дон
+        {% else %} 👤 Мирный
+        {% endif %}
+      </p>
+    </details>
+  {% endfor %}
+
+  <a href="{{ url_for('game.game_view', game_id=players[0].game_id) }}">
+    ▶ Начать игру
+  </a>
+</div>

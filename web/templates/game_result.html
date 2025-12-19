@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>🏁 Игра #{{ game.id }} завершена</h2>
+
+<h3 style="margin-top: 15px;">
+  {{ winner_text }}
+</h3>
+
+<hr>
+
+<h3>👥 Игроки</h3>
+
+<ul>
+{% for p in players %}
+  <li>
+    <strong>{{ p.name }}</strong> —
+    {% if p.alive %}
+      <span style="color:green;">жив</span>
+    {% else %}
+      <span style="color:red;">мёртв</span>
+    {% endif %}
+    <br>
+    <small>Роль: {{ p.role|capitalize }}</small>
+  </li>
+{% endfor %}
+</ul>
+
+<hr>
+
+<p><em>Ведущий: откройте роли по очереди и обсудите игру</em></p>
+
+<a href="{{ url_for('game.new_game') }}">
+  <button>🔁 Новая игра</button>
+</a>
+
+{% endblock %}

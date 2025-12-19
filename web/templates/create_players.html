@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<div class="container">
+  <h1>🎲 Создание игроков</h2>
+
+  <form method="post">
+    {% for i in range(10) %}
+      <input type="text" name="players" placeholder="Имя игрока {{ i+1 }}">
+    {% endfor %}
+
+    <button type="submit">Начать игру</button>
+  </form>
+</div>

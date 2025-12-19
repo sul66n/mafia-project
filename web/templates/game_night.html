@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>🌙 НОЧЬ</h2>
+
+<p>Город засыпает...</p>
+
+<form method="post" action="{{ url_for('game.next_day', game_id=game.id) }}">
+  <button type="submit">🌅 Наступает утро</button>
+</form>
+
+{% endblock %}

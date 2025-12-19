@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мафия</title>
+</head>
+<body>
+
+  <h1>
+    {% if game.status == "day" %}
+      ☀️ ДЕНЬ {{ game.game_length + 1 }}
+    {% else %}
+      🌙 НОЧЬ {{ game.game_length }}
+    {% endif %}
+  </h1>
+
+  <hr>
+
+  <h2>Игроки</h2>
+  <ul>
+    {% for player in players %}
+      <li>
+        {{ player.name }}
+        {% if not player.alive %}
+          ❌ (убит)
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <hr>
+
+  {% if game.status == "day" %}
+    <a href="{{ url_for('game.vote', game_id=game.id) }}">
+      🗳 Перейти к голосованию
+    </a>
+  {% else %}
+    <form action="{{ url_for('game.results', game_id=game.id) }}">
+      <button type="submit">🌅 Наступает день</button>
+    </form>
+  {% endif %}
+
+</body>
+</html>
